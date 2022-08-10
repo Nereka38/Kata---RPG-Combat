@@ -6,7 +6,7 @@ class Character {
 
     private int $health;
     private int $level;
-    private bool $live;
+    private bool $alive;
     private int $damage;
     
 
@@ -15,7 +15,7 @@ class Character {
 
         $this->health = 1000;
         $this->level = 1;
-        $this->live = $this->health;
+        $this->alive = true;
         $this->damage = 500;
 
     }
@@ -24,29 +24,24 @@ class Character {
     {
         return $this->health;
     }
-
-    public function setHealth($health) 
-    {
-        $this->health = $health;
-    }
     
     public function getLevel() 
     {
         return $this->level;
     }
 
-    public function isALive() 
+    public function isAlive() 
     {
-       return $this->Live;
+       return $this->alive;
     }
 
-    public function isDead() 
-    {
-        return $this->health == 0;
+    public function attack($enemy) {
+    $enemy->health = $enemy->health - 100;
     }
 
-    public function attack($enemy, $attackPoints) {
-        
+    public function setHealing($health) {
+    $this->health = $health;
+    return $this;
     }
 
 }

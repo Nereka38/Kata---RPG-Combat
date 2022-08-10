@@ -41,10 +41,10 @@ class CharacterTest extends TestCase {
 		$goku = new Character;
 
 		//When
-		$gokuLive = $goku->getLive();
+		$gokuResult = $goku->isAlive();
 
 		//Then
-		$this->assertEquals("True", $gokuLive);
+		$this->assertEquals(true, $gokuResult);
 
 	}
 
@@ -52,25 +52,31 @@ class CharacterTest extends TestCase {
 	{
 		//Given
 		$goku = new Character;
+		$booboo = new Character;
 
 		//When
-		$gokuDamage = $goku->getDamage();
+		$booboo->attack($goku);
+		$resultGoku = $goku->getHealth();
 
 		//Then
-		$this->assertEquals("False", $gokuDamage);
+		$this->assertEquals(900, $resultGoku);
+		$this->assertEquals(1000, $booboo->getHealth());
 
 	}
 
-	public function  test_character_Healing()
+	public function  test_character_Dead()
 	{
 		//Given
 		$goku = new Character;
+		$booboo = new Character;
 
 		//When
-		$gokuHealing = $goku->getHealing();
+		$booboo->attack($goku);
+		$resultGoku = $goku->getHealth();
 
 		//Then
-		$this->assertEquals("True", $gokuHealing);
+		$this->assertEquals(0, $resultGoku);
+		$this->assertEquals(false, $goku->isAlive());
 
 	}
 }
